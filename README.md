@@ -1,3 +1,3 @@
 # Dotfiles (Gruvbox-material-ish)
 <br>
-![Screenshot](/screenshots/screenshot.png)
+![Screenshot](screenshot/screenshot.png)
