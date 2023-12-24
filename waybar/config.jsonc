@@ -16,6 +16,7 @@
     "cpu",
     "disk",
     "pulseaudio",
+    "pulseaudio#microphone",
     "tray"
   ],
   "modules-center": ["clock","custom/logo", "custom/weather"],
@@ -112,6 +113,13 @@
     "exec": "pactl --format=json list sinks | jq -cM --unbuffered \"map(select(.name == \\\"$(pactl get-default-sink)\\\"))[0].properties | [.\\\"media.name\\\",.\\\"alsa.name\\\",.\\\"node.nick\\\",.\\\"alsa.long_card_name\\\"] | map(select(length>0))[0] | {text:.}\"",
     "exec-if": "sleep 0.1", // Give enough time for `pactl get-default-sink` to update
     "on-click": "pactl --format=json list sinks short | jq -cM --unbuffered \"[.[].name] | .[((index(\\\"$(pactl get-default-sink)\\\")+1)%length)]\" | xargs pactl set-default-sink"
+  },
+  "pulseaudio#microphone": {
+        "format": "{format_source}",
+        "format-source": " ",
+        "format-source-muted": " ",
+        "on-click": "~/.config/hypr/scripts/volume --toggle-mic",
+        "on-click-right": "pavucontrol",
   },
   "wlr/taskbar": {
     "format": "{icon}",
